@@ -13,28 +13,53 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-//Cuando el usuario presione el botón de "Entrar", se manda la consulta a la base de datos
-if (isset($_POST["Entrar"])) {
-    //Crear consulta
-    //$sql = "INSERT INTO limit_value (min_temperature, max_temperature, min_humidity, max_humidity, aceleration_tolerance, rotation_tolerance) VALUES (?, ?, ?, ?, ?, ?)";
-    $sql = "SELECT user_ID FROM user_account WHERE user_name = '' AND password = ''";
-    //Preparar consulta
-    $stmt = $conn->prepare($sql);
-    //Añadir los valores a la consulta
-    $stmt->bind_param("dddddd", $_POST["inpTEMP_MIN"], $_POST["inpTEMP_MAX"], $_POST["inpHUM_MIN"], $_POST["inpHUM_MAX"], $_POST["inpTOL"], $_POST["inpACE"]);
-    
-    //Ejecutar consulta
-    if ($stmt->execute()) {
-        echo "Datos guardados correctamente.";
-    } else {
-        echo "Error al guardar los datos: " . $stmt->error;
-    }
-    //Cerrar consulta
-    $stmt->close();
-    // Redirigir al usuario a la misma página para evitar reenvío de formulario
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
+//Inicializar mensaje vacío
+$message = "";
 
+//Cuando el usuario presione el botón de "Entrar", se manda la consulta a la base de datos
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["Entrar"])) {
+    //Guardar datos de entrada del usuario
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+    if(empty($username) || empty($password)) {
+        $message = "Usuario o Contraseña vacíos";
+    }
+    //Consulta a la base
+    $query = "SELECT * FROM user_account WHERE user_name = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    //Verificar si el usuario existe
+    if($result->num_rows > 0){
+        $system_user = $result->fetch_assoc();
+        //Para verificar una contraseña cifrada -> password_verify($password, $system_user["password"])
+        if($password == $system_user["password"]){
+            echo "Sesión iniciada";
+            //Sesión iniciada con éxito
+            session_start();
+            $_SESSION['user_ID'] = $system_user["user_ID"];
+            $_SESSION['user_name'] = $system_user["user_name"];
+            header("Location: conexion_BD.php");
+            exit;
+        }
+        else{
+            $message = "Usuario o Contraseña incorrecto.";
+        }
+    }
+    else{
+        $message = "Usuario o Contraseña incorrecto.";
+    }
+    // Redirigir para evitar el resubmit
+    if (!empty($message)) {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?error=" . urlencode($message));
+        exit;
+    }
+}
+// Mostrar mensaje de error desde GET (opcional)
+if (isset($_GET['error'])) {
+    $message = htmlspecialchars($_GET['error']);
 }
 ?>
 
@@ -56,7 +81,11 @@ if (isset($_POST["Entrar"])) {
                 <h1>Bienvenido</h1>
             </div>
 
-            <form action="login.php" method="POST" class="login-form">
+            <?php if (!empty($message)): ?>
+                <p style="color: red; text-align: center;"><?php echo htmlspecialchars($message); ?></p>
+            <?php endif; ?>
+
+            <form action="" method="POST" class="login-form">
                 <div class="control-group">
                     <input type="text" class="login-field" name="username" placeholder="usuario" id="login-name" required>
                     <label class="login-field-icon fui-user" for="login-name"></label>
@@ -68,7 +97,8 @@ if (isset($_POST["Entrar"])) {
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-large btn-block" name="Entrar">Entrar</button>
-                <a class="login-link" href="#">¿Olvidaste tu contraseña?</a>
+                <a class="login-link" href="\BalanceaTec\Views\crear_cuenta.php">Crear cuenta</a>
+                <a class="login-link" href="\BalanceaTec\Views\contrasena_olvidada.php">¿Olvidaste tu contraseña?</a>
             </form>
         </div>
     </div>
