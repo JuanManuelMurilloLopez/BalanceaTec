@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["Entrar"])) {
             session_start();
             $_SESSION['user_ID'] = $system_user["user_ID"];
             $_SESSION['user_name'] = $system_user["user_name"];
-            header("Location: conexion_BD.php");
+            header("Location: \BalanceaTec\Views\pagina_principal.php");
             exit;
         }
         else{
