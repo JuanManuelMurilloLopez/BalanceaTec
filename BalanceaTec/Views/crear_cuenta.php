@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["Aceptar"])){
         $stmt_check->execute();
         $result_check = $stmt_check->get_result();
 
-        if ($result_check->num_rows > 0) {
+        if ($result_check->num_rows > 0){
             $message = "Este nombre de usuaio ya existe.";
         }
         else{
@@ -45,6 +45,9 @@ if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["Aceptar"])){
 
             if ($stmt_insert->execute()) {
                 $message = "Cuenta creada exitosamente.";
+                //Redirigir al usuario a la página de inicio de sesión
+                header("Location: ../../inicio_sesion.php");
+                exit;
             } else {
                 $message = "Error al crear la cuenta. Por favor, inténtalo de nuevo.";
             }
