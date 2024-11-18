@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BalanceaTec | Inicia Sesión</title>
-    <link rel="stylesheet" href="/Others/styles.css">
+    <link rel="stylesheet" href="\BalanceaTec\Style\Inicio_sesion.css">
 </head>
 <body>
     <div id="Titulo">
