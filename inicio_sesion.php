@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["Entrar"])) {
     //Guardar datos de entrada del usuario
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-    //$hashed_password = password_hash($password, PASSWORD_DEFAULT);
     if(empty($username) || empty($password)) {
         $message = "Usuario o Contraseña vacíos";
     }
@@ -37,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["Entrar"])) {
         $system_user = $result->fetch_assoc();
         //Para verificar una contraseña cifrada -> password_verify($password, $system_user["password"])
         //////REVISAR HASH
-        if($password == $system_user["password"]){
+        if(password_verify($password, $system_user["password"])){
             echo "Sesión iniciada";
             //Sesión iniciada con éxito
             session_start();
