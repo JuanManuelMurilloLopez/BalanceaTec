@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["Entrar"])) {
     //Guardar datos de entrada del usuario
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
+    //$hashed_password = password_hash($password, PASSWORD_DEFAULT);
     if(empty($username) || empty($password)) {
         $message = "Usuario o Contraseña vacíos";
     }
@@ -35,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["Entrar"])) {
     if($result->num_rows > 0){
         $system_user = $result->fetch_assoc();
         //Para verificar una contraseña cifrada -> password_verify($password, $system_user["password"])
+        //////REVISAR HASH
         if($password == $system_user["password"]){
             echo "Sesión iniciada";
             //Sesión iniciada con éxito
@@ -57,10 +59,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["Entrar"])) {
         exit;
     }
 }
-// Mostrar mensaje de error desde GET (opcional)
+// Mostrar mensaje de error desde GET
 if (isset($_GET['error'])) {
     $message = htmlspecialchars($_GET['error']);
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -87,12 +90,12 @@ if (isset($_GET['error'])) {
 
             <form action="" method="POST" class="login-form">
                 <div class="control-group">
-                    <input type="text" class="login-field" name="username" placeholder="usuario" id="login-name" required>
+                    <input type="text" class="login-field" name="username" placeholder="Usuario" id="login-name" required>
                     <label class="login-field-icon fui-user" for="login-name"></label>
                 </div>
 
                 <div class="control-group">
-                    <input type="password" class="login-field" name="password" placeholder="contraseña" id="login-pass" required>
+                    <input type="password" class="login-field" name="password" placeholder="Contraseña" id="login-pass" required>
                     <label class="login-field-icon fui-lock" for="login-pass"></label>
                 </div>
 
