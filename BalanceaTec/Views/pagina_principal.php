@@ -1,4 +1,17 @@
 <?php
+
+session_start();
+
+//Verificar si el usuario está logueado
+if (!isset($_SESSION['user_ID'])) {
+    header("Location: ../../inicio_sesion.php"); //Redirigir a login si no está logueado
+    exit;
+}
+
+// Recuperar el user_ID de la sesión
+$user_ID = $_SESSION['user_ID'];
+$username = $_SESSION['user_name'];
+
 //Credenciales para conectarse a la base
 $host = 'localhost';
 $user = 'reto';
@@ -71,13 +84,13 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BalanceaTec</title>
+    <title>BalanceaTec | Página Principal</title>
     <link href="styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <header>
-        <button>Ajustes de cuenta</button>
-        <button>Log out</button>
+        <button onclick="window.location.href = 'configuracion_cuenta.php'">Ajustes de cuenta</button>
+        <button onclick="window.location.href = '../../inicio_sesion.php'" >Log out</button>
     </header>
     <div id="Titulo">
         <h1>BalanceaTec</h1>
