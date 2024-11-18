@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Credenciales para conectarse a la base
 $host = 'localhost';
 $user = 'reto';
@@ -38,8 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["Entrar"])) {
         //////REVISAR HASH
         if(password_verify($password, $system_user["password"])){
             echo "Sesión iniciada";
-            //Sesión iniciada con éxito
-            session_start();
             $_SESSION['user_ID'] = $system_user["user_ID"];
             $_SESSION['user_name'] = $system_user["user_name"];
             header("Location: \BalanceaTec\Views\pagina_principal.php");
