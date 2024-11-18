@@ -38,9 +38,10 @@ if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["Aceptar"])){
         else{
             // Insertar los datos en la tabla user_account
             // Para encriptar la contraseña -> $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Cifrar la contraseña
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $query_insert = "INSERT INTO user_account (user_name, password) VALUES (?, ?)";
             $stmt_insert = $conn->prepare($query_insert);
-            $stmt_insert->bind_param("ss", $username, $password);
+            $stmt_insert->bind_param("ss", $username, $hashed_password);
 
             if ($stmt_insert->execute()) {
                 $message = "Cuenta creada exitosamente.";
