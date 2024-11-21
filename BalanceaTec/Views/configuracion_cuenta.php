@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
     <h2>Cuenta: <?php echo htmlspecialchars($username) ?></h2>
     </div>
     <div id="Opciones">
-        <button>Añadir Dispositivo</button>
+        <button onclick="window.location.href = 'anadir_dispositivo.php'">Añadir Dispositivo</button>
         <button onclick="window.location.href = 'cambiar_contrasena.php'">Cambiar Contraseña</button>
     </div>
     
