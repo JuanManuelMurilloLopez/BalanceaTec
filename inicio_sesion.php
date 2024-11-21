@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["Entrar"])) {
             echo "Sesión iniciada";
             $_SESSION['user_ID'] = $system_user["user_ID"];
             $_SESSION['user_name'] = $system_user["user_name"];
-            header("Location: \BalanceaTec\Views\pagina_principal.php");
+            header("Location: \IoT\BalanceaTec\BalanceaTec\Views\pagina_principal.php");
             exit;
         }
         else{

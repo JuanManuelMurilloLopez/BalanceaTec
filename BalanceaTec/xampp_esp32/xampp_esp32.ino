@@ -16,10 +16,10 @@ const char* getLimitsURL = "http://192.168.56.1/BalanceaTec/Aduino/obtener_limit
 String deviceID = WiFi.macAddress();
 
 //Inizialización de variables
-float temperature;
-float humidity;
-float rotation_x, rotation_y, rotation_z;
-float acceleration_x, acceleration_y, acceleration_z;
+float temperature = 25;
+float humidity = 45;
+float rotation_x = 1, rotation_y = 2, rotation_z = 3;
+float acceleration_x= 4, acceleration_y = 5, acceleration_z = 6;
 
 //Variables para los límites
 float maxTemperature, minTemperature;
@@ -34,7 +34,7 @@ void conectarWifi(){
     delay(1000);
     Serial.print(".");
   }
-  Serial.println("\n Conexión establecida. Dirección IP: " + WiFi.localIP());
+  Serial.println("\n Conexión establecida.");
 }
 
 void enviarDatos(){

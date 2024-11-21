@@ -56,6 +56,7 @@ if ($result->num_rows > 0) {
     <div id="Opciones">
         <button onclick="window.location.href = 'anadir_dispositivo.php'">Añadir Dispositivo</button>
         <button onclick="window.location.href = 'cambiar_contrasena.php'">Cambiar Contraseña</button>
+        <button onclick="window.location.href = 'pagina_principal.php'">Regresar</button>
     </div>
     
     

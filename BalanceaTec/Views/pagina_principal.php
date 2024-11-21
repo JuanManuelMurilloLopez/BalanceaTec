@@ -26,11 +26,38 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+//Obtener dispositivos del dispositivo
+$sql = "SELECT device_id, device_name FROM device WHERE user_ID = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_ID);
+$stmt->execute();
+$result = $stmt->get_result();
+
+//Arreglo para guardar los dispositivos
+$devices = [];
+while( $row = $result->fetch_assoc() ){
+    //Agregar los datos de la consulta a los dispositivos
+    $devices[] = $row;
+}
+$stmt->close();
+//Verificar si se ha enviado un dispositivo seleccionado
+if(isset($_POST["seleccionar_dispositivo"])){
+    $_SESSION['selected_device'] = $_POST['seleccionar_dispositivo'];
+}
+
+//Recuperar el dispositivo seleccionado de la sesión
+$selected_device = isset($_SESSION['selected_device']) ? $_SESSION['selected_device'] : null;
+
+
 //Obtener valores
 //Temperatura
 //Get the latest temperature value
-$sql = "SELECT temperature_value FROM temperature ORDER BY temperature_id DESC LIMIT 1";
-$result = $conn->query($sql);
+$sql = "SELECT temperature_value FROM temperature WHERE device_id = ? ORDER BY temperature_id DESC LIMIT 1";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $selected_device);
+$stmt->execute();
+
+$result = $stmt->get_result();
 //Fetch the latest temperature
 $lastest_temperature = '';
 if( $result->num_rows > 0){
@@ -39,10 +66,14 @@ if( $result->num_rows > 0){
 } else {
     $lastest_temperature = "No data";
 }
+$stmt->close();
 //Humedad
 //Get
-$sql = "SELECT humidity_value FROM humidity ORDER BY humidity_id DESC LIMIT 1";
-$result = $conn->query($sql);
+$sql = "SELECT humidity_value FROM humidity WHERE device_id = ? ORDER BY humidity_id DESC LIMIT 1";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $selected_device);
+$stmt->execute();
+$result = $stmt->get_result();
 //Fetch
 $lastest_humidity = '';
 if( $result->num_rows > 0){
@@ -51,15 +82,16 @@ if( $result->num_rows > 0){
 } else {
     $lastest_humidity = "No data";
 }
+$stmt->close();
 
 //Cuando el usuario presione el botón de "Guardar Cambios", actualiza la base de datos
 if (isset($_POST["SAVE"])) {
     //Crear consulta
-    $sql = "INSERT INTO limit_value (min_temperature, max_temperature, min_humidity, max_humidity, aceleration_tolerance, rotation_tolerance) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO limit_value (min_temperature, max_temperature, min_humidity, max_humidity, aceleration_tolerance, rotation_tolerance, device_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
     //Preparar consulta
     $stmt = $conn->prepare($sql);
     //Añadir los valores a la consulta
-    $stmt->bind_param("dddddd", $_POST["inpTEMP_MIN"], $_POST["inpTEMP_MAX"], $_POST["inpHUM_MIN"], $_POST["inpHUM_MAX"], $_POST["inpTOL"], $_POST["inpACE"]);
+    $stmt->bind_param("dddddds", $_POST["inpTEMP_MIN"], $_POST["inpTEMP_MAX"], $_POST["inpHUM_MIN"], $_POST["inpHUM_MAX"], $_POST["inpTOL"], $_POST["inpACE"], $selected_device);
     
     //Ejecutar consulta
     if ($stmt->execute()) {
@@ -98,6 +130,25 @@ $conn->close();
     <div id="Descripcion">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque enim cupiditate aperiam praesentium, cum labore a ab quae voluptatibus earum fugit tempora dolore! Fugit, dolorem mollitia voluptas corporis esse quis.</p>
     </div>
+    <div id="Seleccion_Dispositivo">
+        <form method="post" action="">
+            <label for="seleccionar_dispositivo">Selecciona el Dispositivo: </label>
+            <select name="seleccionar_dispositivo" id="seleccionar_dispositivo" onchange="this.form.submit()">
+                <?php if (!empty($devices)): ?>
+                    <?php foreach ($devices as $device): ?>
+                        <option value="<?php echo htmlspecialchars($device['device_id']); ?>" 
+                        <?php echo ($device['device_id'] == $selected_device) ? 'selected' : ''; ?>>
+                        <?php echo htmlspecialchars($device['device_name']); ?>
+                    </option>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <option value="">No hay dispositivos disponibles</option>
+                <?php endif; ?>
+            </select>
+        </form>
+    
+</div>
+
     <div id="Wrapper_Contenido">
         <div id="Temperatura">
             <h2>Temperatura</h2>
