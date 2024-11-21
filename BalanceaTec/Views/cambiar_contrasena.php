@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_ID'])) {
 //Recuperar el user_ID de la sesión
 $user_ID = $_SESSION['user_ID'];
 $username = $_SESSION['user_name'];
-$password = $_SESSION['password'];
+
 
 //Credenciales para conectarse a la base
 $host = 'localhost';
