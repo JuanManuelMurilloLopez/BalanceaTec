@@ -3,23 +3,23 @@
 #include <ArduinoJson.h>
 
 // Configuración WiFi
-const char* ssid = "Poco X6 Pro 5G";
+const char* ssid = "POCO X6 Pro 5G";
 const char* password = "RedmiJuan";
 
 //Archivo con el que se va a comunicar para enviar datos a la base
-const char* sendDataURL = "http://192.168.56.1/BalanceaTec/Aduino/conexion_ESP32.php";
+const char* sendDataURL = "http://192.168.250.5/IoT/BalanceaTec/BalanceaTec/xampp_esp32/conexion_ESP32.php";
 
 //Archivo con el que se va a comunicar para recibir datos de la base
-const char* getLimitsURL = "http://192.168.56.1/BalanceaTec/Aduino/obtener_limit_values.php";
+const char* getLimitsURL = "http://192.168.250.5/IoT/BalanceaTec/BalanceaTec/xampp_esp32/obtener_limit_values.php";
 
 //Obtención de la Dirección MAC del ESP32 (Device_ID)
-String deviceID = WiFi.macAddress();
+String deviceID;
 
 //Inizialización de variables
 float temperature = 25;
 float humidity = 45;
 float rotation_x = 1, rotation_y = 2, rotation_z = 3;
-float acceleration_x= 4, acceleration_y = 5, acceleration_z = 6;
+float aceleration_x= 4, aceleration_y = 5, aceleration_z = 6;
 
 //Variables para los límites
 float maxTemperature, minTemperature;
@@ -35,6 +35,7 @@ void conectarWifi(){
     Serial.print(".");
   }
   Serial.println("\n Conexión establecida.");
+  deviceID = WiFi.macAddress();
 }
 
 void enviarDatos(){
@@ -52,9 +53,9 @@ void enviarDatos(){
                       "&rotation_x=" + String(rotation_x) +
                       "&rotation_y=" + String(rotation_y) +
                       "&rotation_z=" + String(rotation_z) +
-                      "&acceleration_x=" + String(acceleration_x) +
-                      "&acceleration_y=" + String(acceleration_y) +
-                      "&acceleration_z=" + String(acceleration_z);
+                      "&aceleration_x=" + String(aceleration_x) +
+                      "&aceleration_y=" + String(aceleration_y) +
+                      "&aceleration_z=" + String(aceleration_z);
     int httpResponseCode = http.POST(postData);
     if(httpResponseCode > 0){
       Serial.println("Datos enviados correctamente: " + String(httpResponseCode));
@@ -75,6 +76,7 @@ void obtenerLimitValues() {
     HTTPClient http;
     String url = String(getLimitsURL) + "?device_ID=" + deviceID;
     http.begin(url);
+    http.setTimeout(10000);
 
     int httpResponseCode = http.GET();
 
@@ -102,7 +104,7 @@ void obtenerLimitValues() {
         Serial.println("Error al parsear los límites: " + String(error.c_str()));
       }
     } else {
-      Serial.println("Error al obtener límites: " + String(httpResponseCode));
+      Serial.println("Error al obtener límites: " + http.errorToString(httpResponseCode));
     }
 
     http.end();
@@ -113,7 +115,7 @@ void obtenerLimitValues() {
 
 void setup() {
   Serial.begin(115200);
-
+  Serial.println(deviceID);
   conectarWifi();
 
   obtenerLimitValues();
@@ -121,7 +123,7 @@ void setup() {
 }
 
 void loop() {
-
+  Serial.println("Dirección MAC del dispositivo: " + deviceID);
   enviarDatos();
   delay(5000);
 

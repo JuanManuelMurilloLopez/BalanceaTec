@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 $device_ID = $_GET['device_ID'];
 
 //Obtener los límites de la base de datos
-$sql = "SELECT max_temperature, min_temperature, max_humidity, min_humidity, rotation_tolerance, acceleration_tolerance 
+$sql = "SELECT max_temperature, min_temperature, max_humidity, min_humidity, rotation_tolerance, aceleration_tolerance 
         FROM limit_value 
         WHERE device_ID = '$device_ID'
         ORDER BY created_at DESC

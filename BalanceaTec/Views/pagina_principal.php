@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_ID'])) {
     exit;
 }
 
-// Recuperar el user_ID de la sesión
+//Recuperar el user_ID de la sesión
 $user_ID = $_SESSION['user_ID'];
 $username = $_SESSION['user_name'];
 
@@ -26,7 +26,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-//Obtener dispositivos del dispositivo
+//Obtener dispositivos del usuario
 $sql = "SELECT device_id, device_name FROM device WHERE user_ID = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_ID);
