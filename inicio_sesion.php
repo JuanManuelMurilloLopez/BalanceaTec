@@ -73,17 +73,17 @@ if (isset($_GET['error'])) {
     <link rel="stylesheet" href="\BalanceaTec\Style\Inicio_sesion.css">
 </head>
 <body>
-    <div id="Titulo">
-        <h1>BalanceaTec</h1>
-    </div>
     <div class="login">
+        <div id="Titulo">
+            <h1>BalanceaTec</h1>
+        </div>
         <div class="login-screen">
             <div class="app-title">
                 <h1>Bienvenido</h1>
             </div>
 
             <?php if (!empty($message)): ?>
-                <p style="color: red; text-align: center;"><?php echo htmlspecialchars($message); ?></p>
+                <p class="error-message"><?php echo htmlspecialchars($message); ?></p>
             <?php endif; ?>
 
             <form action="" method="POST" class="login-form">
@@ -98,8 +98,8 @@ if (isset($_GET['error'])) {
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-large btn-block" name="Entrar">Entrar</button>
-                <a class="login-link" href="\BalanceaTec\Views\crear_cuenta.php">Crear cuenta</a>
-                <a class="login-link" href="\BalanceaTec\Views\contrasena_olvidada.php">¿Olvidaste tu contraseña?</a>
+                <a class="login-link" href="Views/crear_cuenta.php">Crear cuenta</a>
+                <a class="login-link" href="Views/contrasena_olvidada.php">¿Olvidaste tu contraseña?</a>
             </form>
         </div>
     </div>
