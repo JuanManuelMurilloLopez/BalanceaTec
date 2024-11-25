@@ -70,10 +70,10 @@ if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["Aceptar"])){
     <link rel="stylesheet" href="..\Style\Inicio_sesion.css">
 </head>
 <body>
-<div id="Titulo">
-        <h1>BalanceaTec</h1>
-    </div>
     <div class="login">
+        <div id="Titulo">
+            <h1>BalanceaTec</h1>
+        </div>
         <div class="login-screen">
             <div class="app-title">
                 <h2>Crea tu cuenta</h2>

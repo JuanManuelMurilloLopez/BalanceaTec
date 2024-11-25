@@ -98,8 +98,8 @@ if (isset($_GET['error'])) {
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-large btn-block" name="Entrar">Entrar</button>
-                <a class="login-link" href="Views/crear_cuenta.php">Crear cuenta</a>
-                <a class="login-link" href="Views/contrasena_olvidada.php">¿Olvidaste tu contraseña?</a>
+                <a class="login-link" href="BalanceaTec/Views/crear_cuenta.php">Crear cuenta</a>
+                <a class="login-link" href="BalanceaTec/Views/contrasena_olvidada.php">¿Olvidaste tu contraseña?</a>
             </form>
         </div>
     </div>
