@@ -71,11 +71,13 @@ if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["Aceptar"])){
 
 ?>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BalanceaTec | Cambiar Contraseña</title>
+    <link rel="stylesheet" href="cambiar_contrasena.css">
     <link rel="stylesheet" href="..\Style\Inicio_sesion.css">
 </head>
 <body>
