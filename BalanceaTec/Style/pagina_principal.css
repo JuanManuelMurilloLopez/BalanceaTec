@@ -127,29 +127,25 @@ header button:hover {
 #Wrapper_Limits {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between; 
     margin-top: 40px;
     padding: 20px;
 }
 
+/* Caja individual */
 #Temp, #Hum, #Inc, #Ace {
     background-color: rgba(0, 0, 0, 0.6);
     padding: 20px;
     border-radius: 8px;
-    width: 45%;
+    width: 22%;  
     margin-bottom: 20px;
     text-align: center;
 }
 
-#Temp h3, #Hum h3, #Inc h3, #Ace h3 {
-    color: #1abc9c;
-    font-size: 1.2rem;
-}
-
 input[type="number"] {
-    padding: 10px;
+    padding: 8px;
     font-size: 1rem;
-    width: 80%;
+    width: 70%;  
     margin: 10px 0;
     border: 2px solid #7f8c8d;
     border-radius: 5px;
@@ -157,7 +153,12 @@ input[type="number"] {
     color: #34495e;
 }
 
-button[type="submit"] {
+#Temp h3, #Hum h3, #Inc h3, #Ace h3 {
+    font-size: 1rem;  
+}
+
+/* Contenedor del boton de "Guardar Cambios" */
+#Wrapper_Limits button[type="submit"] {
     background-color: #1abc9c;
     color: white;
     border: none;
@@ -165,9 +166,18 @@ button[type="submit"] {
     font-size: 1.2rem;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 20px;
+    display: block; 
+    margin: 0 auto; 
+    width: auto; 
 }
 
-button[type="submit"]:hover {
-    background-color: #16a085;
+#Wrapper_Limits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    margin-top: 40px;
+    padding: 20px;
+    gap: 1px;
 }
