@@ -1,0 +1,173 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #2C3E50, #4CA1AF); 
+    color: #ecf0f1;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    background-color: #34495e;
+}
+
+header button {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+header button:hover {
+    background-color: #16a085;
+}
+
+/* Titulo */
+#Titulo {
+    text-align: center;
+    margin: 40px 0;
+}
+
+#Titulo h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+/* Descripcion */
+#Descripcion {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+#Descripcion p {
+    font-size: 1.5rem;  
+    font-weight: 500;   
+    color: #ecf0f1;     
+    line-height: 1.8;   
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+}
+
+.slogan {
+    font-size: 1.2rem;  
+    font-weight: 400;   
+    color: #bdc3c7;     
+    margin-top: 10px;   
+    font-style: italic; 
+}
+
+
+
+/* Seleccion de dispositivo */
+#Seleccion_Dispositivo {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#Seleccion_Dispositivo select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #7f8c8d;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #34495e;
+    cursor: pointer;
+}
+
+#Seleccion_Dispositivo label {
+    font-size: 1.2rem;
+    color: #ecf0f1;
+    margin-right: 10px;
+}
+
+/* Contenido principal */
+#Wrapper_Contenido {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px;
+}
+
+/* Bloques de informacion */
+#Temperatura, #Humedad, #Giro {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 8px;
+    width: 30%;
+    text-align: center;
+}
+
+#Temperatura h2, #Humedad h2, #Giro h2 {
+    color: #1abc9c;
+}
+
+#Temperatura p, #Humedad p {
+    font-size: 1.5rem;
+    color: #ecf0f1;
+}
+
+#Seleccion_Eje select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #7f8c8d;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #34495e;
+    cursor: pointer;
+}
+
+/* Formulario */
+#Wrapper_Limits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 40px;
+    padding: 20px;
+}
+
+#Temp, #Hum, #Inc, #Ace {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 8px;
+    width: 45%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#Temp h3, #Hum h3, #Inc h3, #Ace h3 {
+    color: #1abc9c;
+    font-size: 1.2rem;
+}
+
+input[type="number"] {
+    padding: 10px;
+    font-size: 1rem;
+    width: 80%;
+    margin: 10px 0;
+    border: 2px solid #7f8c8d;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #34495e;
+}
+
+button[type="submit"] {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #16a085;
+}

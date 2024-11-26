@@ -118,6 +118,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BalanceaTec | Página Principal</title>
     <link href="styles.css" rel="stylesheet" type="text/css" />
+    <link href="../Style/pagina_principal.css">
 </head>
 <body>
     <header>
@@ -128,8 +129,10 @@ $conn->close();
         <h1>BalanceaTec</h1>
     </div>
     <div id="Descripcion">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque enim cupiditate aperiam praesentium, cum labore a ab quae voluptatibus earum fugit tempora dolore! Fugit, dolorem mollitia voluptas corporis esse quis.</p>
+        <p>BalanceaTec optimiza el transporte de sustancias, garantizando condiciones ideales durante todo el proceso.</p>
+        <p class="slogan">"Porque en el transporte, cada detalle importa."</p>
     </div>
+    
     <div id="Seleccion_Dispositivo">
         <form method="post" action="">
             <label for="seleccionar_dispositivo">Selecciona el Dispositivo: </label>
