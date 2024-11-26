@@ -38,7 +38,7 @@ float baseAngleX = 0, baseAngleY = 0, baseAngleZ = 0; //Referencias iniciales
 //Inizialización de variables
 float temperature;
 float humidity;
-float rotation_x = 1, rotation_y = 2, rotation_z = 3;
+float rotation_x, rotation_y, rotation_z;
 
 //Variables para los límites
 float maxTemperature, minTemperature;
@@ -199,15 +199,16 @@ void loop() {
   AcZ = Wire.read() << 8 | Wire.read();
 
   // Calcular ángulos de inclinación con referencia a los valores base
-  float angleX = atan2(AcY, AcZ) * 180 / PI - baseAngleX;
-  float angleY = atan2(AcX, AcZ) * 180 / PI - baseAngleY;
+  float rotation_x = atan2(AcY, AcZ) * 180 / PI - baseAngleX;
+  float rotation_y = atan2(AcX, AcZ) * 180 / PI - baseAngleY;
+  float rotation_z = atan2(AcX, AcY) * 180 / PI - baseAngleZ;
 
   // Controlar motor según el ángulo
-  if (angleX > 10) {
+  if (rotation_x > 10) {
     // Gira en una dirección
     digitalWrite(MOTOR_IN1, HIGH);
     digitalWrite(MOTOR_IN2, LOW);
-  } else if (angleX < -10) {
+  } else if (rotation_x < -10) {
     // Gira en la dirección opuesta
     digitalWrite(MOTOR_IN1, LOW);
     digitalWrite(MOTOR_IN2, HIGH);
@@ -220,19 +221,19 @@ void loop() {
   // Mostrar datos en el LCD
   lcd.setCursor(0, 0); // Primera fila
   lcd.print("Temp: ");
-  lcd.print(temperatura);
+  lcd.print(temperature);
   lcd.print(" C");
 
   lcd.setCursor(0, 1); // Segunda fila
   lcd.print("Hum: ");
-  lcd.print(humedad);
+  lcd.print(humidity);
   lcd.print(" %");
 
   // Mostrar datos del MPU6050 en el monitor serial
   Serial.print("AngleX: ");
-  Serial.print(angleX);
+  Serial.print(rotation_x);
   Serial.print(" | AngleY: ");
-  Serial.println(angleY);
+  Serial.println(rotation_y);
   enviarDatos();
   delay(1000);
   //Tiempo para actualizar los límites (Actualmente: 2 minutos)

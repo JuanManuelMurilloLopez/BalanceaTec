@@ -95,6 +95,8 @@ void loop() {
   // Calcular ángulos de inclinación con referencia a los valores base
   float angleX = atan2(AcY, AcZ) * 180 / PI - baseAngleX;
   float angleY = atan2(AcX, AcZ) * 180 / PI - baseAngleY;
+  float angleZ = atan2(AcX, AcY) * 180 / PI - baseAngleZ;
+
 
   // Controlar motor según el ángulo
   if (angleX > 10) {
