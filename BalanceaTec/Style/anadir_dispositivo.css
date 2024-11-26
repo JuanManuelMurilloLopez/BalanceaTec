@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #7e6f9d, #5e4c80); 
+    background: linear-gradient(135deg, #8a64a5, #5c3d73); 
     color: #ddd;
     display: flex;
     justify-content: center;
@@ -10,6 +10,7 @@ body {
     padding-top: 20px;
 }
 
+/* Titulo principal fuera de la caja */
 #Titulo {
     text-align: center;
     margin-bottom: 20px;
@@ -22,9 +23,9 @@ body {
     margin: 0;
 }
 
-/* Contenedor para login */
+/* Contenedor principal (caja de login) */
 .login {
-    background: linear-gradient(135deg, #9c86b3, #7f6586); /* Degradado morado más suave para la caja */
+    background: linear-gradient(135deg, #9b6fa4, #75528c); 
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
@@ -34,13 +35,14 @@ body {
     margin-top: 20px;
 }
 
-.login-screen .app-title h2 {
+/* Titulo dentro de la caja */
+.app-title h2 {
     font-size: 2em;
     color: #ffffff;
     margin-bottom: 30px;
 }
 
-/* Elementos formulario */
+/* Estilo de los campos de entrada */
 .control-group {
     margin-bottom: 20px;
 }
@@ -48,19 +50,19 @@ body {
 .login-field {
     width: 100%;
     padding: 12px;
-    border: 1px solid #7f6586;
+    border: 1px solid #75528c;
     border-radius: 8px;
     font-size: 1em;
-    background-color: #f6f1f9;
+    background-color: #f2ebf9;
     transition: all 0.3s ease;
     color: #444;
 }
 
 .login-field:focus {
     outline: none;
-    border-color: #9c86b3;
-    background-color: #e8d9f3;
-    box-shadow: 0px 0px 10px rgba(30, 60, 114, 0.3);
+    border-color: #5c3d73;
+    background-color: #e1d0e6;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Botones */
@@ -80,28 +82,28 @@ body {
 }
 
 .btn-primary {
-    background-color: #7f6586;
+    background-color: #75528c;
     color: white;
     font-weight: bold;
 }
 
 .btn-primary:hover {
-    background-color: #9c86b3;
+    background-color: #5c3d73;
     transform: scale(1.05);
 }
 
 .btn-secondary {
-    background-color: #5e4c80;
+    background-color: #5c3d73;
     color: white;
     font-weight: bold;
 }
 
 .btn-secondary:hover {
-    background-color: #7f6586;
+    background-color: #75528c;
     transform: scale(1.05);
 }
 
-/* Mensaje estilo */
+/* Mensajes de error */
 p {
     font-size: 1em;
     color: #ff4d4d;
