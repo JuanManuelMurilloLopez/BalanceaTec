@@ -62,12 +62,14 @@ if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["Aceptar"])){
 
 ?>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BalanceaTec | Crear Cuenta</title>
     <link rel="stylesheet" href="..\Style\Inicio_sesion.css">
+    <link rel="stylesheet" href="crear_cuenta.css">
 </head>
 <body>
     <div class="login">
