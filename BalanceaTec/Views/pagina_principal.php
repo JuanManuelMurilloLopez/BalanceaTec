@@ -84,6 +84,53 @@ if( $result->num_rows > 0){
 }
 $stmt->close();
 
+//Inclinación
+//Get
+$sql = "SELECT in_x FROM rotation WHERE device_id = ? ORDER BY rotation_ID DESC LIMIT 1";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $selected_device);
+$stmt->execute();
+$result = $stmt->get_result();
+//Fetch
+$lastest_rot_x = '';
+if( $result->num_rows > 0){
+    $row = $result->fetch_assoc();
+    $lastest_rot_x = $row['in_x'] . "º";
+} else {
+    $lastest_rot_x = "No data";
+}
+$stmt->close();
+
+$sql = "SELECT in_y FROM rotation WHERE device_id = ? ORDER BY rotation_ID DESC LIMIT 1";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $selected_device);
+$stmt->execute();
+$result = $stmt->get_result();
+//Fetch
+$lastest_rot_y = '';
+if( $result->num_rows > 0){
+    $row = $result->fetch_assoc();
+    $lastest_rot_y = $row['in_y'] . "º";
+} else {
+    $lastest_rot_y = "No data";
+}
+$stmt->close();
+
+$sql = "SELECT in_z FROM rotation WHERE device_id = ? ORDER BY rotation_ID DESC LIMIT 1";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $selected_device);
+$stmt->execute();
+$result = $stmt->get_result();
+//Fetch
+$lastest_rot_z = '';
+if( $result->num_rows > 0){
+    $row = $result->fetch_assoc();
+    $lastest_rot_z = $row['in_z'] . "º";
+} else {
+    $lastest_rot_z = "No data";
+}
+$stmt->close();
+
 //Cuando el usuario presione el botón de "Guardar Cambios", actualiza la base de datos
 if (isset($_POST["SAVE"])) {
     //Crear consulta
@@ -163,12 +210,11 @@ $conn->close();
         <div id="Giro">
             <h2>Inclinación</h2>
             <div id="Seleccion_Eje">
-                <label for="seleccionar_eje">Selecciona el eje: </label>
-                <select name="seleccionar_eje" id="seleccionar_eje">
-                    <option value="X">X</option>
-                    <option value="Y">Y</option>
-                    <option value="Z">Z</option>
-                </select>
+                <div>
+                    <p>X: <?php echo $lastest_rot_x; ?></p>
+                    <p>Y: <?php echo $lastest_rot_y; ?></p>
+                    <p>Z: <?php echo $lastest_rot_z; ?></p>
+                </div>
             </div>
         </div>
     </div>
