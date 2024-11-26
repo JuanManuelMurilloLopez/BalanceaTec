@@ -62,19 +62,20 @@ if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["Guardar"])){
 
 ?>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BalanceaTec | Añadir Dispositivo</title>
-    <link rel="stylesheet" href="../Style/anadir_dispositivo.css">
+    <link rel="stylesheet" href="anadir_dispositivo.css"> 
 </head>
 <body>
-
     <div class="login">
         <div id="Titulo">
             <h1>BalanceaTec</h1>
         </div>
+
         <div class="login-screen">
             <div class="app-title">
                 <h2>Añade tu nuevo dispositivo</h2>
@@ -93,12 +94,12 @@ if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["Guardar"])){
                     <input type="text" class="login-field" name="MAC_Adress" placeholder="Dirección MAC" id="MAC_Adress" required>
                 </div><br>
 
-                <button type="submit" class="btn btn-primary btn-large btn-block" name="Guardar">Guardar</button>
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary" name="Guardar">Guardar</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='configuracion_cuenta.php'">Regresar</button>
+                </div>
             </form>
         </div>
-    </div>
-    <div>
-        <button onclick="window.location.href='configuracion_cuenta.php'">Regresar</button>
     </div>
 </body>
 </html>
