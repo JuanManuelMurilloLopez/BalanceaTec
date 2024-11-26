@@ -117,8 +117,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BalanceaTec | Página Principal</title>
-    <link href="styles.css" rel="stylesheet" type="text/css" />
-    <link href="../Style/pagina_principal.css">
+    <link rel="stylesheet" href="../Style/pagina_principal.css">
 </head>
 <body>
     <header>
