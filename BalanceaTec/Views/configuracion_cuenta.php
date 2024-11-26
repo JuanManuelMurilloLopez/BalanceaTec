@@ -46,7 +46,7 @@ if ($result->num_rows > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BalanceaTec | Cuenta</title>
-    <link rel="stylesheet" href="configuracion_cuennta.css">
+    <link rel="stylesheet" href="../Style/configuracion_cuenta.css">
 </head>
 <body>
     <div id="Titulo">

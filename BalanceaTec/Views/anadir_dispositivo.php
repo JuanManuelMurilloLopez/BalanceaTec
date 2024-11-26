@@ -67,12 +67,14 @@ if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["Guardar"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BalanceaTec | Añadir Dispositivo</title>
+    <link rel="stylesheet" href="../Style/anadir_dispositivo.css">
 </head>
 <body>
-<div id="Titulo">
-        <h1>BalanceaTec</h1>
-    </div>
+
     <div class="login">
+        <div id="Titulo">
+            <h1>BalanceaTec</h1>
+        </div>
         <div class="login-screen">
             <div class="app-title">
                 <h2>Añade tu nuevo dispositivo</h2>
